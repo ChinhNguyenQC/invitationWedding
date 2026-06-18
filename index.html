@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <!-- Hero Section -->
+    <section class="section hero-panel">
+      <div class="hero-copy">
+        <p class="subtext">Lời mời thân mật</p>
+        <div class="invite-card" id="inviteCard">
+          <p id="invitationLetter"></p>
+          <img id="photoPreview" src="./Images/image1.jpg" alt="Wedding Invitation" style="object-fit: cover; width: 100%; height: auto;" />
+        </div>
+        <h2>Đếm ngược đến ngày trọng đại</h2>
+        <p id="countdown" style="font-size: 1.2em; font-weight: bold; text-align: center;"></p>
+      </div>
+    </section>
+
+    <!-- Photo Album Section
+    <section class="section album-section">
+      <div class="card">
+        <h2>❤️</h2>
+        <div class="photo-box">
+          <img id="photoPreview" src="Images/image1.jpg" alt="My wedding" />
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Wedding Timeline Section -->
+    <section class="section timeline-section">
+      <div class="card">
+        <h2>Thời gian</h2>
+        <div class="timeline-item">
+          <div class="timeline-marker">17:30</div>
+          <div class="timeline-content">Chào khách</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">19:00</div>
+          <div class="timeline-content">Khai tiệc</div>
+        </div>
+        <h2>Địa điểm</h2>
+        <div class="card">
+          <p>Trung tâm Hội nghị & Tiệc cưới Capella Parkview, 7 Nguyễn Lương Bằng, Phú Mỹ, Quận 7, TP.HCM</p>
+        </div>
+        <div style="align-items: center; display: flex; justify-content: center;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62704.92454543514!2d106.594304!3d10.806886399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752928b68fbc3f%3A0xc58bea5686708420!2zVHJ1bmcgVMOibSBI4buZaSBOZ2jhu4sgJiBUaeG7h2MgQ8aw4bubaSBQYXZpbGxvbiBUw6JuIFPGoW4gTmjhuqV0!5e0!3m2!1svi!2s!4v1781788524366!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thank You Section -->
+    <section class="section thank-you-section">
+      <div class="card">
+        <h2>💖 Thank You</h2>
+        
+      <div class="hero-copy">
+        <h1 id="yourName"></h1></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
