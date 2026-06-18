@@ -42,11 +42,6 @@ function updateInvitation(values) {
   const location = values.location.trim() || defaultConfig.location;
   const note = values.note ? values.note.trim() : defaultConfig.note;
 
-  namesText.textContent = `${bride} & ${groom}`;
-  dateText.textContent = new Date(date).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' });
-  timeText.textContent = time;
-  locationText.textContent = location;
-  if (noteText) noteText.textContent = note;
 }
 
 function applyConfig(initialConfig) {
