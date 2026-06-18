@@ -34,17 +34,21 @@ body {
 }
 
 .page-shell {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  gap: 24px;
+  gap: 5%;
 }
 @media screen and (min-width: 768px) {
     .page-shell {
         width: 50%;
+        margin: 0 auto;
+        display: grid;
+        gap: 24px;
     }
   }
 .section {
+  max-width: auto;
   align-items: center;
   opacity: 0;
   transform: translateY(24px) rotateX(6deg);
@@ -66,12 +70,12 @@ body {
 
 .hero-panel {
   display: grid;
-  grid-template-columns: 1.1fr;
-  gap: 24px;
+  row-gap: 24px;
   align-items: center;
 }
 
 .hero-copy {
+  max-width: 100%;
   padding: 28px;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.82);
@@ -95,7 +99,6 @@ body {
 
 
 .subtext {
-  margin: 0 0 18px;
   color: var(--accent-dark);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -150,35 +153,6 @@ body {
   text-align: center;
 }
 
-.invite-card {
-  background: linear-gradient(180deg, rgba(255, 239, 234, 0.95), rgba(255, 236, 240, 0.95));
-  border-radius: 24px;
-  padding: 28px;
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.invite-card h2 {
-  margin: 0.2em 0 0.6em;
-  font-size: 2.1rem;
-}
-
-.tidbit,
-.event-info,
-.note {
-  margin: 0.35em 0;
-  color: var(--muted);
-}
-
-.body {
-  width: 110px;
-  height: 120px;
-  border-radius: 40px;
-  position: absolute;
-  bottom: 14px;
-  z-index: -1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
 .body--dress {
   background: radial-gradient(circle at 50% 20%, #ffcfdd 0%, #ff9fb9 60%, #fea4b2 100%);
@@ -217,7 +191,7 @@ body {
 
 *:hover {
   transform: translateY(-4px);
-  
+
 }
 
 label {
@@ -332,39 +306,4 @@ input:focus {
   font-size: 0.9rem;
 }
 
-/* Dress Code Section */
-.dress-code-section p {
-  margin: 12px 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
 
-/* RSVP Section */
-.rsvp-section p {
-  margin: 12px 0;
-  color: var(--muted);
-}
-
-/* Thank You Section */
-.thank-you-section p {
-  margin: 12px 0;
-  color: var(--muted);
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-@media (max-width: 800px) {
-  .hero-panel {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 800px) {
-  body {
-    padding: 16px;
-  }
-  .hero-copy,
-  .card {
-    padding: 20px;
-  }
-}
