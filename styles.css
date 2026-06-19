@@ -27,6 +27,7 @@ html, body {
   font-family: 'Varela Round', 'Quicksand', 'Segoe UI', sans-serif;
   background: linear-gradient(160deg, #ffe7dc 0%, #fff1f7 50%, #ffe8f0 100%);
   color: var(--text);
+  overscroll-behavior: none;
 }
 
 
@@ -271,6 +272,7 @@ html, body {
   display: flex;
   touch-action: pan-y;
   transition: transform 0.6s ease;
+  -webkit-overflow-scrolling: touch
 }
 .image-wrapper {
   background: linear-gradient(160deg, #ffe7dc 0%, #fff1f7 50%, #ffe8f0 100%);
