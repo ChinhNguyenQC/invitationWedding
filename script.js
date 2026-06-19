@@ -241,30 +241,40 @@ applyConfig(config);
   let startX = null;
   let startY = null;
   let tracking = false;
-  const SWIPE_THRESHOLD = 50;
+  const SWIPE_THRESHOLD = 40;
+
+  function handleSwipe(dx, dy) {
+    if (Math.abs(dx) < Math.abs(dy) || Math.abs(dx) < SWIPE_THRESHOLD) return false;
+    tracking = false;
+    if (dx > 0) prevSlide(); else nextSlide();
+    return true;
+  }
 
   slidesEl.addEventListener('touchstart', (event) => {
-    if (!event.touches || !event.touches.length) return;
+    if (!event.touches || event.touches.length !== 1) return;
     startX = event.touches[0].clientX;
     startY = event.touches[0].clientY;
     tracking = true;
   }, { passive: true });
 
   slidesEl.addEventListener('touchmove', (event) => {
-    if (!tracking || !event.touches || !event.touches.length) return;
-    const dx = startX - event.touches[0].clientX;
-    const dy = startY - event.touches[0].clientY;
-    if (Math.abs(dx) < Math.abs(dy)) return;
-    if (Math.abs(dx) > SWIPE_THRESHOLD) {
-      tracking = false;
-      if (dx > 0) nextSlide(); else prevSlide();
+    if (!tracking || !event.touches || event.touches.length !== 1) return;
+    const dx = event.touches[0].clientX - startX;
+    const dy = event.touches[0].clientY - startY;
+    if (handleSwipe(dx, dy)) {
+      event.preventDefault();
     }
-  }, { passive: true });
+  }, { passive: false });
 
   slidesEl.addEventListener('touchend', () => {
     tracking = false;
     startX = startY = null;
-  }, { passive: true });
+  });
+
+  slidesEl.addEventListener('touchcancel', () => {
+    tracking = false;
+    startX = startY = null;
+  });
 
   slidesEl.addEventListener('pointerdown', (event) => {
     if (event.pointerType === 'mouse' || event.pointerType === 'pen' || event.pointerType === 'touch') {
@@ -297,4 +307,6 @@ applyConfig(config);
   });
 
   initSlides();
+
+  
 })();
