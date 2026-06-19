@@ -244,6 +244,7 @@ html, body {
 }
 .invitation-table td {
   padding: 12px 14px;
+  stroke: var(--text);
   text-align: center;
   vertical-align: top;
   color: var(--accent-dark);
@@ -254,7 +255,7 @@ html, body {
 }
 
 .invitation-table td {
-  font-weight: 500;
+  font-weight: 900;
 }
 
 .section h2 {
@@ -395,6 +396,9 @@ input:focus {
   border-left: 3px solid var(--accent);
   background: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
+}
+.timeline-item:hover {
+  transform: translateY(-4px);
 }
 
 .timeline-marker {
