@@ -106,7 +106,7 @@ function updateCountdown() {
       <p>${Day} ${Hour} ${Minute} ${Second}</p>
     `;}
   } else {
-    countdownElement.textContent = `Chúng ta đã bắt đầu! ${targetDate.toLocaleString()}`;
+    countdownElement.textContent = `Hôn lễ đã diễn ra! Cảm ơn ${decodeURIComponent(nameParam)} đã đến chung vui cùng chúng mình!`;
   }
 }
 
