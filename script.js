@@ -128,7 +128,7 @@ gnb.innerHTML = `<table>
     <td>Ngọc Châu</td>
   </tr>
 </table>`;
-invitationTime.innerHTML = `Vào lúc ${config.time} ngày ${new Date(config.date).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })} tại ${config.location}`;
+invitationTime.innerHTML = `Vào lúc 17:30 ngày ${new Date(config.date).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })} tại ${config.location}`;
 applyConfig(config);
 
 (function() {
