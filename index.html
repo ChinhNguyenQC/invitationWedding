@@ -7,14 +7,26 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Loading Page -->
+  <div id="loadingPage" class="loading-page">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p class="loading-text">Chờ xíu nha...</p>
+    </div>
+  </div>
+
   <main class="page-shell">
     <!-- Hero Section -->
     <section class="section hero-panel">
       <div class="hero-copy">
         <p class="subtext">Lời mời thân mật</p>
         <div class="invite-card" id="inviteCard">
-          <p id="invitationLetter"></p>
-          <img id="photoPreview" src="./Images/image1.jpg" alt="Wedding Invitation" style="object-fit: cover; width: 100%; height: auto;" />
+          <p class="invitation-letter" id="invitationLetter"></p>
+          <div class="invitation-letter invitation-table subtext" id="gnb"></div>
+          <p class="invitation-letter" id="invitationTime"></p>
+          <!-- <img id="photoPreview" src="" alt="Wedding Invitation" style="object-fit: cover; width: 100%; height: auto;" /> -->
+          <div style="overflow: hidden;">
+      <div class="slide-container"id="slides"></div>
         </div>
         <h2>Đếm ngược đến ngày trọng đại</h2>
         <p id="countdown" style="font-size: 1.2em; font-weight: bold; text-align: center;"></p>

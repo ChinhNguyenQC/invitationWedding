@@ -8,6 +8,8 @@ const photoPreview = document.getElementById('photoPreview');
 const yourName = document.getElementById('yourName');
 const invitationName = document.getElementById('invitationName');
 const invitationLetter = document.getElementById('invitationLetter');
+const invitationTime = document.getElementById('invitationTime');
+const gnb = document.getElementById('gnb');
 const namesText = document.getElementById('namesText');
 const dateText = document.getElementById('dateText');
 const timeText = document.getElementById('timeText');
@@ -71,6 +73,13 @@ function applyConfig(initialConfig) {
   updateInvitation(initialConfig);
 }
 
+// Function to hide the loading page
+function hideLoadingPage() {
+  const loadingPage = document.getElementById('loadingPage');
+  if (loadingPage) {
+    loadingPage.classList.add('hidden');
+  }
+}
 
 // Update the yourName element with URL parameter if present
 const nameParam = getUrlParameter('name');
@@ -79,7 +88,7 @@ if (nameParam && yourName) {
 }
 const countdownElement = document.getElementById('countdown');
 function updateCountdown() {
-  const targetDate = new Date(window.inviteConfig.date + ' ' + window.inviteConfig.time);
+  const targetDate = new Date(window.inviteConfig.date + 'T' + window.inviteConfig.time + '+07:00').getTime();
   const now = new Date();
   const timeDifference = targetDate - now;
 
@@ -105,8 +114,187 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-invitationLetter.textContent = `Chúng mình trân trọng kính mời ${decodeURIComponent(nameParam)} đến dự lễ cưới của chú rể doreamon ${config.groom
-} và cô dâu xinh đẹp ${config.bride
-} vào ngày ${new Date(config.date).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })} tại ${config.location}`;
-
+invitationLetter.innerHTML = `Thay mặt một nửa còn lại, tụi mình trân trọng kính mời ${decodeURIComponent(nameParam)} đến dự lễ cưới`;
+//<br>Chú rể doreamon<br>${config.groom
+//}<br>cô dâu xinh đẹp<br>${config.bride
+//}`;
+gnb.innerHTML = `<table>
+  <tr>
+    <th>Chú rể</th>
+    <th>Cô dâu</th>
+  </tr>
+  <tr>
+    <td>Quang Chính</td>
+    <td>Ngọc Châu</td>
+  </tr>
+</table>`;
+invitationTime.innerHTML = `Vào lúc ${config.time} ngày ${new Date(config.date).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })} tại ${config.location}`;
 applyConfig(config);
+
+(function() {
+  const slidesEl = document.getElementById('slide') || document.getElementById('slides');
+  if (!slidesEl) return;
+
+  const URI = "https://drive.google.com/thumbnail";
+  const IMAGE_SIZE = "w1000";
+  const imgList = [
+    '1pDUGV7lFQQehYFxYtIaC-WzMVufEdzrj',
+    '1Kfni9nzD2ZIwkgXM_os9F_Jp-Szmnanx',
+    '15AkqZTalE-ZLNj8EHkCFVnHDG7IPSbTw',
+    '1RbnyCZ9dOUDs7um1eyBteZi6H5gCEozR',
+    '123jLd2PAHEKyumqQohM1LKRY7NGZKMLd',
+    '1PhwGo5Sgj85kuoH0RNtyre5anPjR9RJm',
+    '1Me-mKr94AAu4s56nbl-OWQCw6yDy1vNa',
+    '17f3XMnuepIP__vvHz6IkiuTrTlSVfm_f',
+    '1mFeX9fwv-oEZa3WWmaRVd2Z4DD-_gLNb',
+    '15RXi97YGUcv1IXPDXjqoXw5c8Hq5_KBp',
+    '1z3zcfuXBzwrhCJihmvQG4FSphewbZCJ8',
+    '11oppJSUrKnIoRGAv8EY2kyfWBATF5Vac',
+  ];
+  const slides = [];
+  let index = 0;
+  let timer = null;
+
+
+  function loadByName(name) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve({ ok: true, el: img });
+      img.onerror = () => resolve({ ok: false });
+      img.src = `${URI}?id=${name}&sz=${IMAGE_SIZE}`;
+      img.setAttribute('draggable', 'false');
+      img.style.userSelect = 'none';
+    });
+  }
+
+  async function initSlides() {
+    for (const name of imgList) {
+      const result = await loadByName(name);
+      if (result.ok) {
+        result.el.alt = `Slide Wedding ${name}`;
+        slides.push(result.el);
+      }
+    }
+
+    if (slides.length === 0) {
+      const placeholder = document.createElement('div');
+      placeholder.style.padding = '40px';
+      placeholder.style.color = '#99a0b0';
+      placeholder.style.textAlign = 'center';
+      placeholder.innerText = 'No slide images found in Images/. Add image files or update imgList in script.js.';
+      slidesEl.appendChild(placeholder);
+      hideLoadingPage();
+      return;
+    }
+
+    for (const img of slides) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'image-wrapper';
+      wrapper.appendChild(img);
+      slidesEl.appendChild(wrapper);
+    }
+
+    updateSlidePosition();
+    startAutoplay();
+    try {
+      await Promise.all(slides.map((img) => (img.decode ? img.decode().catch(() => {}) : Promise.resolve())));
+    } catch (e) {
+      // ignore decode failures
+    }
+    
+    hideLoadingPage();
+  }
+
+  function updateSlidePosition() {
+    const container = document.getElementById('slides');
+    const width = slidesEl.clientWidth;
+    slidesEl.style.transform = `translateX(${-index * width}px)`;
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlidePosition();
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    updateSlidePosition();
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    timer = setInterval(() => {
+      index = (index + 1) % slides.length;
+      updateSlidePosition();
+    }, 4000);
+  }
+
+  function stopAutoplay() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  window.addEventListener('resize', () => requestAnimationFrame(updateSlidePosition));
+  slidesEl.addEventListener('mouseenter', stopAutoplay);
+  slidesEl.addEventListener('mouseleave', startAutoplay);
+
+  let startX = null;
+  let startY = null;
+  let tracking = false;
+  const SWIPE_THRESHOLD = 50;
+
+  slidesEl.addEventListener('touchstart', (event) => {
+    if (!event.touches || !event.touches.length) return;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+    tracking = true;
+  }, { passive: true });
+
+  slidesEl.addEventListener('touchmove', (event) => {
+    if (!tracking || !event.touches || !event.touches.length) return;
+    const dx = startX - event.touches[0].clientX;
+    const dy = startY - event.touches[0].clientY;
+    if (Math.abs(dx) < Math.abs(dy)) return;
+    if (Math.abs(dx) > SWIPE_THRESHOLD) {
+      tracking = false;
+      if (dx > 0) nextSlide(); else prevSlide();
+    }
+  }, { passive: true });
+
+  slidesEl.addEventListener('touchend', () => {
+    tracking = false;
+    startX = startY = null;
+  }, { passive: true });
+
+  slidesEl.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' || event.pointerType === 'pen' || event.pointerType === 'touch') {
+      startX = event.clientX;
+      startY = event.clientY;
+      tracking = true;
+      slidesEl.setPointerCapture && slidesEl.setPointerCapture(event.pointerId);
+    }
+  });
+
+  slidesEl.addEventListener('pointermove', (event) => {
+    if (!tracking || startX === null || startY === null) return;
+    const dx = startX - event.clientX;
+    const dy = startY - event.clientY;
+    if (Math.abs(dx) < Math.abs(dy)) return;
+    if (Math.abs(dx) > SWIPE_THRESHOLD) {
+      tracking = false;
+      if (dx > 0) nextSlide(); else prevSlide();
+    }
+  });
+
+  slidesEl.addEventListener('pointerup', () => {
+    tracking = false;
+    startX = startY = null;
+  });
+
+  slidesEl.addEventListener('pointercancel', () => {
+    tracking = false;
+    startX = startY = null;
+  });
+
+  initSlides();
+})();
