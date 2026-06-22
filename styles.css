@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boogaloo&family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&family=Varela+Round&display=swap");
 
 :root {
   color-scheme: light;
@@ -14,22 +14,24 @@
 
 * {
   box-sizing: border-box;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   min-height: 100%;
-  font-family: 'Varela Round', 'Quicksand', 'Segoe UI', sans-serif;
+  font-family: "Varela Round", "Quicksand", "Segoe UI", sans-serif;
   background: linear-gradient(160deg, #ffe7dc 0%, #fff1f7 50%, #ffe8f0 100%);
   color: var(--text);
   overscroll-behavior: none;
 }
-
 
 .loading-page {
   position: fixed;
@@ -43,7 +45,9 @@ html, body {
   justify-content: center;
   z-index: 9999;
   opacity: 1;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
 }
 
 .loading-page.hidden {
@@ -93,7 +97,7 @@ html, body {
   display: grid;
   gap: 12px;
   opacity: 0;
-  animation: blinkAndFade  0.8s ease-in-out forwards;
+  animation: blinkAndFade 0.8s ease-in-out forwards;
   animation-delay: 0.5s;
 }
 
@@ -113,13 +117,13 @@ html, body {
 }
 
 @media screen and (min-width: 768px) {
-    .page-shell {
-        width: 50%;
-        margin: 0 auto;
-        display: grid;
-        gap: 24px;
-    }
+  .page-shell {
+    width: 50%;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
   }
+}
 .section {
   max-width: auto;
   align-items: center;
@@ -167,9 +171,11 @@ html, body {
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 16px 32px rgba(247, 139, 151, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
-
 
 .subtext {
   color: var(--accent-dark);
@@ -181,7 +187,8 @@ html, body {
 
 .hero-copy h1 {
   margin: 0 0 18px;
-  font-family: 'Dancing Script', 'Varela Round', 'Quicksand', 'Segoe UI', sans-serif;
+  font-family:
+    "Dancing Script", "Varela Round", "Quicksand", "Segoe UI", sans-serif;
   font-size: clamp(1rem, 3vw, 2.5rem);
   line-height: 1.05;
   animation: cuteSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -194,7 +201,7 @@ html, body {
 }
 
 .hero-copy h2 {
-  font-family: 'Varela Round', 'Quicksand', 'Segoe UI', sans-serif;
+  font-family: "Varela Round", "Quicksand", "Segoe UI", sans-serif;
 }
 
 .hero-copy h1:hover {
@@ -219,7 +226,7 @@ html, body {
 .card h2,
 .invite-card h2,
 .section h2 {
-  font-family: 'Varela Round', 'Quicksand', 'Segoe UI', sans-serif;
+  font-family: "Varela Round", "Quicksand", "Segoe UI", sans-serif;
 }
 
 .invitation-letter {
@@ -236,7 +243,7 @@ html, body {
   margin: 0;
 }
 
-.invitation-table th{
+.invitation-table th {
   padding: 12px 14px;
   text-align: center;
   font-weight: 700;
@@ -271,8 +278,6 @@ html, body {
   margin: auto;
   display: flex;
   touch-action: pan-y;
-  transition: transform 0.6s ease;
-  -webkit-overflow-scrolling: touch
 }
 .image-wrapper {
   background: linear-gradient(160deg, #ffe7dc 0%, #fff1f7 50%, #ffe8f0 100%);
@@ -281,11 +286,11 @@ html, body {
   flex: 0 0 100%;
   align-items: center;
   justify-content: center;
-  
+  -webkit-overflow-scrolling: touch;
 }
 .image-wrapper img {
   width: 100%;
-  max-height: 40vh;
+  max-height: 43vh;
   object-fit: contain;
   display: block;
   box-sizing: border-box;
@@ -304,7 +309,12 @@ html, body {
 }
 
 .body--dress {
-  background: radial-gradient(circle at 50% 20%, #ffcfdd 0%, #ff9fb9 60%, #fea4b2 100%);
+  background: radial-gradient(
+    circle at 50% 20%,
+    #ffcfdd 0%,
+    #ff9fb9 60%,
+    #fea4b2 100%
+  );
   clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 
@@ -335,7 +345,9 @@ html, body {
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.75);
   box-shadow: 0 20px 50px rgba(229, 166, 174, 0.16);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 h1:hover,
 h2:hover,
@@ -381,9 +393,10 @@ input:focus {
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
-
 
 /* Timeline Section */
 .timeline-section {
@@ -434,5 +447,3 @@ input:focus {
   color: var(--muted);
   font-size: 0.9rem;
 }
-
-
